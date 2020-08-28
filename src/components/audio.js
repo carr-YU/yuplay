@@ -19,7 +19,7 @@ function AudioComponent(){
     const lyric = useRef(null);
     useEffect(() => {
         axios({
-            // url:`${url}/txt/${musicList[musicIndex]}.txt`,
+            url:`${url}/txt/${musicList[musicIndex]}.txt`,
             // url:`${staticUrl}/txt/${musicList[musicIndex]}.txt`,
             method:'get',
         })
