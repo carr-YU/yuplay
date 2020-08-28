@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>atb-manage</title><link rel="Shortcut Icon" href="./favicon.ico" type="image/x-icon"/><script src="https://cdn.bootcdn.net/ajax/libs/three.js/100/three.min.js"></script><link href="vender.9039503c8fba08f488e5.css" rel="stylesheet"><link href="main.css" rel="stylesheet"></head><body><div id="root"></div><script id="vs" type="x-shader/x-vertex">varying vec2 vUv;
+        void main() {
+            vUv = uv;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+        }</script><script id="fs" type="x-shader/x-fragment">uniform sampler2D map;
+        uniform vec3 fogColor;
+        uniform float fogNear;
+        uniform float fogFar;
+        varying vec2 vUv;
+        void main() {
+            float depth = gl_FragCoord.z / gl_FragCoord.w;
+            float fogFactor = smoothstep( fogNear, fogFar, depth );
+            gl_FragColor = texture2D( map, vUv );
+            gl_FragColor.w *= pow( gl_FragCoord.z, 20.0 );
+            gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );
+        }</script><script src="assets/js/live2dcubismcore.min.js"></script><script src="bundle.1f8e9d4e8068a1070e72.js"></script><script src="bundle.587bab18e709d2f6c28d.js"></script><script src="bundle.189fc789a43d2f9abb75.js"></script><script src="bundle.9039503c8fba08f488e5.js"></script><script src="bundle.3750c3c5a07fce85cf90.js"></script></body></html>
